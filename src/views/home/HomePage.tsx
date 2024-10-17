@@ -25,6 +25,7 @@ export default function HomePage() {
     const io = socket
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const { value } = useSelector(
         (state: RootState) => state.gameplaye,
     )
@@ -43,6 +44,7 @@ export default function HomePage() {
     }, [email])
 
     const playerGoGame = () => {
+        console.log(username)
         if (!value.includes("x") && !value.includes("0")) {
             io.emit("playe-game", { username, email })
         }

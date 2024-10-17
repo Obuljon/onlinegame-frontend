@@ -12,6 +12,7 @@ import {
 } from "../../features/gameplaye/gameSlice"
 import { getDrop } from "../../features/backdrop/waitSlice"
 import { resetTime } from "../../features/endtime/endtimeSlice"
+import { clearEnemy } from "../../features/enemy/enemySlice"
 export default function Drow() {
     const io = socket
     const navigate = useNavigate()
@@ -25,6 +26,10 @@ export default function Drow() {
         (state: RootState) => state.gameplaye,
     )
 
+    const { email, username } = useSelector(
+        (state: RootState) => state.user,
+    )
+
     io.on("drow", ({ gameplaye }) => {
         dispatch(resetTime())
         dispatch(setGamePlaye(gameplaye))
@@ -32,10 +37,12 @@ export default function Drow() {
 
         setTimeout(() => {
             dispatch(setDraw("top-1/4"))
-        }, 1500)
+        }, 1000)
     })
 
     const onclickBack = () => {
+        dispatch(clearEnemy())
+
         dispatch(getWhite("white_fog_hidden"))
         dispatch(setDraw("view_drop_hidden"))
         dispatch(restartGamePlaye())
@@ -43,11 +50,12 @@ export default function Drow() {
     }
 
     const onclickPlaye = () => {
+        dispatch(clearEnemy())
         dispatch(restartGamePlaye())
         dispatch(getWhite("white_fog"))
         dispatch(setDraw("view_drop_hidden"))
         dispatch(getDrop("view_drop"))
-        io.emit("playe-game", { message: "ok" })
+        io.emit("playe-game", { email, username })
     }
 
     return (

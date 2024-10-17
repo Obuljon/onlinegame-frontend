@@ -8,6 +8,7 @@ import { socket } from "../../socket"
 import { Link } from "react-router-dom"
 import { wailresdata } from "../../dtos/sockettyps"
 import Waittime from "./Waittime"
+import { clearEnemy } from "../../features/enemy/enemySlice"
 
 export default function Wait() {
     const io = socket
@@ -21,12 +22,6 @@ export default function Wait() {
     io.on("player-wait", (data: wailresdata) => {
         setresTitle(data.message)
     })
-
-    const setmainstyle = () => {
-        dispatch(getWhite("white_fog_hidden"))
-        setStyle("view_drop_hidden")
-        leaveGame()
-    }
 
     const leaveGame = () => {
         dispatch(getWhite("white_fog"))

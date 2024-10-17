@@ -16,6 +16,7 @@ import {
 } from "../../features/gameplaye/gameSlice"
 import { getDrop } from "../../features/backdrop/waitSlice"
 import { resetTime } from "../../features/endtime/endtimeSlice"
+import { clearEnemy } from "../../features/enemy/enemySlice"
 
 export default function Winner() {
     const io = socket
@@ -28,6 +29,9 @@ export default function Winner() {
     const { value } = useSelector(
         (state: RootState) => state.gameplaye,
     )
+    const { email, username } = useSelector(
+        (state: RootState) => state.user,
+    )
 
     const [message, setMessage] = React.useState("")
 
@@ -38,7 +42,7 @@ export default function Winner() {
         dispatch(getWhite("white_fog"))
         setTimeout(() => {
             dispatch(setWinnerStyle("view_drop"))
-        }, 3000)
+        }, 1000)
     })
 
     const classStyle =
@@ -46,6 +50,7 @@ export default function Winner() {
         style
 
     const delhistory = () => {
+        dispatch(clearEnemy())
         dispatch(getWhite("white_fog"))
         dispatch(setWinnerStyle("view_drop_hidden"))
         dispatch(restartGamePlaye())
@@ -59,7 +64,7 @@ export default function Winner() {
     const onclickPlaye = () => {
         dispatch(setWinnerStyle("view_drop_hidden"))
         dispatch(restartGamePlaye())
-        io.emit("playe-game", { message: "ok" })
+        io.emit("playe-game", { email, username })
         dispatch(getDrop("view_drop"))
         dispatch(getWhite("white_fog"))
     }

@@ -12,6 +12,10 @@ import {
 } from "../../features/gameplaye/gameSlice"
 import { getDrop } from "../../features/backdrop/waitSlice"
 import { resetTime } from "../../features/endtime/endtimeSlice"
+import {
+    clearEnemy,
+    setEnemy,
+} from "../../features/enemy/enemySlice"
 
 export default function GameOver() {
     const io = socket
@@ -20,6 +24,10 @@ export default function GameOver() {
 
     const { style } = useSelector(
         (state: RootState) => state.gameover,
+    )
+
+    const { email, username } = useSelector(
+        (state: RootState) => state.user,
     )
 
     const classStyle =
@@ -36,13 +44,14 @@ export default function GameOver() {
         setMassage(message)
         setTimeout(() => {
             dispatch(setGameOverStyle("top-1/4"))
-        }, 2000)
+        }, 1000)
     })
 
     const delhistory = () => {
         dispatch(getWhite("white_fog"))
         dispatch(setGameOverStyle("view_drop_hidden"))
         dispatch(restartGamePlaye())
+        dispatch(clearEnemy())
     }
 
     const onclickBack = () => {
@@ -50,7 +59,7 @@ export default function GameOver() {
         navigate("/")
     }
     const onclickPlaye = () => {
-        io.emit("playe-game", { message: "ok" })
+        io.emit("playe-game", { email, username })
         dispatch(getDrop("view_drop"))
         delhistory()
     }

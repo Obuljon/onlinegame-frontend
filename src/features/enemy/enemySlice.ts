@@ -20,9 +20,12 @@ export const enemySlice = createSlice({
             state.email = action.payload.email
             state.username = action.payload.username
         },
+        clearEnemy: (state) => {
+            state = initialState
+        },
     },
 })
 
-export const { setEnemy } = enemySlice.actions
+export const { setEnemy, clearEnemy } = enemySlice.actions
 
 export default enemySlice.reducer

@@ -112,6 +112,7 @@ export default function App() {
     io.on(
         "players-game",
         ({ gameposition, gamestart, myenemy }) => {
+            console.log(myenemy)
             dispatch(setEnemy(myenemy))
 
             if (gamestart) {

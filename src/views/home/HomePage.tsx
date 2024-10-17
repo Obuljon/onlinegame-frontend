@@ -18,6 +18,8 @@ import { RootState } from "../../utils/store"
 import { setGameOverStyle } from "../../features/gameover/gameoverSlice"
 import { setWinnerStyle } from "../../features/winner/winnerSlice"
 import { setDraw } from "../../features/drow/drawSlice"
+import getUsername from "../../sevices/myname/myname"
+import { setUserData } from "../../features/user/userSlice"
 
 export default function HomePage() {
     const io = socket
@@ -26,10 +28,23 @@ export default function HomePage() {
     const { value } = useSelector(
         (state: RootState) => state.gameplaye,
     )
+    const { email, username } = useSelector(
+        (state: RootState) => state.user,
+    )
+
+    const userdata = () =>
+        getUsername().then((data) => {
+            const { email, username } = data
+            dispatch(setUserData({ email, username }))
+        })
+
+    React.useEffect(() => {
+        userdata()
+    }, [email])
 
     const playerGoGame = () => {
         if (!value.includes("x") && !value.includes("0")) {
-            io.emit("playe-game", { message: "ok" })
+            io.emit("playe-game", { username, email })
         }
         dispatch(getWhite("white_fog"))
         dispatch(getDrop("view_drop"))

@@ -1,6 +1,5 @@
 const path = require("path")
 const HtmlWebpackPlagin = require("html-webpack-plugin")
-
 module.exports = {
     mode: "development",
     entry: {

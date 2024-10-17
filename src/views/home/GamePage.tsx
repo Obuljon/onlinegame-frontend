@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../utils/store"
 import { useNavigate } from "react-router-dom"
+import getUsername from "../../sevices/myname/myname"
 
 function GamePage() {
     const navigate = useNavigate()
@@ -28,6 +29,14 @@ function GamePage() {
         (state: RootState) => state.player,
     )
 
+    const { email, username } = useSelector(
+        (state: RootState) => state.user,
+    )
+
+    const enemy = useSelector(
+        (state: RootState) => state.enemy,
+    )
+
     const [{ playerX, player0 }, setPlayer] =
         React.useState({
             playerX: "player One",
@@ -36,9 +45,16 @@ function GamePage() {
 
     React.useEffect(() => {
         if (gameposition == "x")
-            setPlayer({ playerX: "You", player0: "enemy" })
+            setPlayer({
+                playerX: username,
+                player0: enemy.username,
+            })
+
         if (gameposition == "0")
-            setPlayer({ playerX: "enemy", player0: "You" })
+            setPlayer({
+                playerX: enemy.username,
+                player0: username,
+            })
     }, [gameposition])
 
     return (

@@ -33,6 +33,7 @@ import { setPlayer } from "./features/player/playerSlice"
 import { getDrop } from "./features/backdrop/waitSlice"
 import Loadersignin from "./components/loader/Loadersignin"
 import { Loaderauth } from "./components"
+import { setEnemy } from "./features/enemy/enemySlice"
 
 export default function App() {
     const router = createBrowserRouter([
@@ -84,8 +85,8 @@ export default function App() {
         (state: RootState) => state.gameplaye,
     )
 
-    const { start, time } = useSelector(
-        (state: RootState) => state.endtime,
+    const enemy = useSelector(
+        (state: RootState) => state.enemy,
     )
 
     io.on(
@@ -108,20 +109,25 @@ export default function App() {
         },
     )
 
-    io.on("players-game", ({ gameposition, gamestart }) => {
-        if (gamestart) {
-            dispatch(startEndTime())
-            dispatch(getWhite("white_fog_hiddin"))
-        }
+    io.on(
+        "players-game",
+        ({ gameposition, gamestart, myenemy }) => {
+            dispatch(setEnemy(myenemy))
 
-        dispatch(
-            setPlayer({
-                gameposition,
-                gamestart,
-            }),
-        )
-        dispatch(getDrop("view_drop_hidden"))
-    })
+            if (gamestart) {
+                dispatch(startEndTime())
+                dispatch(getWhite("white_fog_hiddin"))
+            }
+
+            dispatch(
+                setPlayer({
+                    gameposition,
+                    gamestart,
+                }),
+            )
+            dispatch(getDrop("view_drop_hidden"))
+        },
+    )
 
     return <RouterProvider router={router} />
 }

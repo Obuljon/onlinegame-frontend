@@ -9,6 +9,8 @@ import drawReducer from "../features/drow/drawSlice"
 import robotplyareReducer from "../features/robotplaye/robotvsplayeSlice"
 import endtimeReducer from "../features/endtime/endtimeSlice"
 import authReducer from "../features/auth/authSlice"
+import userReducer from "../features/user/userSlice"
+import enemyReducer from "../features/enemy/enemySlice"
 // Configure the store with slices
 export const store = configureStore({
     reducer: {
@@ -22,6 +24,8 @@ export const store = configureStore({
         robot: robotplyareReducer,
         endtime: endtimeReducer,
         auth: authReducer,
+        user: userReducer,
+        enemy: enemyReducer,
     },
 })
 

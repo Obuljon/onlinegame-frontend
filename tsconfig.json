@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "lib": ["DOM", "ES2022"],
+        "moduleResolution": "node",
+        "target": "ES6",
+        "module": "commonjs",
+        "strict": true,
+        "jsx": "react",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist"
+    },
+    "include": ["src", "custom.d.ts"]
+}
+
+// {
+//     "compilerOptions": {
+//         "outDir": "./dist/",
+//         "sourceMap": true,
+//         "noImplicitAny": true,
+//         "module": "es6",
+//         "target": "es5",
+//         "jsx": "react",
+//         "allowJs": true,
+//         "moduleResolution": "node"
+//     }
+// }

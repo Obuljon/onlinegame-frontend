@@ -1,0 +1,21 @@
+.white_fog {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.white_fog_hidden {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.view_drop {
+    top: 25%;
+    z-index: 1;
+}
+
+.view_drop_hidden {
+    top: -100%;
+}
+
+.defeat_drop {
+}

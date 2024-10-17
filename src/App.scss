@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("./assets/scss/abstracts/_variables.scss");
+@import url("./assets/scss/abstracts/_functions.scss");
+@import url("./assets/scss/abstracts/_mixins.scss");
+
+@import url("./assets/scss/base/_reset.scss");
+@import url("./assets/scss/base/_typography.scss");
+@import url("./assets/scss/base/_colors.scss");
+@import url("./assets/scss/base/_utilities.scss");
+
+@import url("./assets/scss/components/_button.scss");
+@import url("./assets/scss/components/_logo.scss");
+@import url("./assets/scss/components/_call.scss");
+
+@import url("./assets/scss/templates/_layout.scss");
+@import url("./assets/scss/templates/_header.scss");
+@import url("./assets/scss/templates/_footer.scss");
+
+@import url("./assets/scss/pages/_auth.scss");
+@import url("./assets/scss/pages/_home.scss");
+
+@import url("./assets/scss/animetion/drop_animation.scss");

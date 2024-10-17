@@ -1,0 +1,65 @@
+.auth_container {
+  width: 37.5rem;
+  height: 72.2rem;
+  background: #fff;
+}
+
+.auth_title {
+  width: 30rem;
+  font-family: "Urbanist-Bold-700";
+  font-size: 3rem;
+  color: #1e232c;
+}
+
+.auth_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.auth_input {
+  width: 33rem;
+  height: 5.6rem;
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  background: #f7f8f9;
+  font-family: "Urbanist-SamiBold-500";
+  font-size: 2rem;
+}
+
+.auth_input::placeholder {
+  font-family: "Urbanist-SamiBold-500";
+  font-size: 15px;
+  line-height: 125%;
+  color: #8391a1;
+}
+
+.auth_input:focus {
+  outline: none;
+}
+
+.auth_logo_bg {
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  width: 105px;
+  height: 56px;
+}
+
+.auth_line {
+  border: 1px solid #e8ecf4;
+  width: 11rem;
+  height: 0px;
+}
+
+.auth_help {
+  font-family: "Urbanist-Bold-700";
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-align: center;
+  color: #35c2c1;
+}
